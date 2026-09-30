@@ -7,7 +7,6 @@ public class GetOrdersByNameHandler(IApplicationDbContext dbContext) : IQueryHan
 {
     public async Task<GetOrdersByNameResult> Handle(GetOrdersByNameQuery query, CancellationToken cancellationToken)
     {
-
         var orders = await dbContext.Orders
                 .Include(o => o.OrderItems)
                 .AsNoTracking()

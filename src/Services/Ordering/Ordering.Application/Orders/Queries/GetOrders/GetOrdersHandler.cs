@@ -14,11 +14,16 @@ public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<G
         var totalCount = await dbContext.Orders.LongCountAsync(cancellationToken);
 
         var orders = await dbContext.Orders
-                       .Include(o => o.OrderItems)
-                       .OrderBy(o => o.OrderName.Value)
-                       .Skip(pageSize * pageIndex)
-                       .Take(pageSize)
-                       .ToListAsync(cancellationToken);
+        .AsNoTracking()
+        .Include(o => o.OrderItems)
+        .OrderBy(o => o.OrderName.Value)
+        .Skip(pageSize * pageIndex)
+        .Take(pageSize)
+        //.AsSplitQuery()
+        .ToListAsync(cancellationToken);
+
+
+
 
         return new GetOrdersResult(
             new PaginatedResult<OrderDto>(

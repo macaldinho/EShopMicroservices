@@ -18,7 +18,8 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>((sp, opts) =>
         {
             opts.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            opts.UseSqlServer(connectionString);
+            opts.UseSqlServer(connectionString,
+                sqlOptions => sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         });
 
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();

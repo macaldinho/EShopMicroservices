@@ -39,8 +39,8 @@ namespace BuildingBlocks.Exceptions.Hanlder
                 (
                     exception.Message,
                     exception.GetType().Name,
-                    StatusCodes.Status404NotFound),
-
+                    StatusCodes.Status404NotFound
+                ),
                 _ =>
                 (
                     exception.Message,
@@ -64,6 +64,7 @@ namespace BuildingBlocks.Exceptions.Hanlder
                 problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
             }
 
+            context.Response.StatusCode = (int)problemDetails.Status;
             await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
 
             return true;
