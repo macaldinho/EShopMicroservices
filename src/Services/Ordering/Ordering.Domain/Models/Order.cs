@@ -3,7 +3,7 @@
 public class Order : Aggregate<OrderId>
 {
     private readonly List<OrderItem> _orderItems = [];
-    public IReadOnlyList<OrderItem> OrderITems => _orderItems.AsReadOnly();
+    public IReadOnlyList<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
     public CustomerId CustomerId { get; private set; } = default!;
     public OrderName OrderName { get; private set; } = default!;
@@ -13,7 +13,7 @@ public class Order : Aggregate<OrderId>
     public OrderStatus Status { get; private set; } = OrderStatus.Pending;
     public decimal TotalPrice
     {
-        get => OrderITems.Sum(x => x.Price * x.Quantity);
+        get => OrderItems.Sum(x => x.Price * x.Quantity);
         private set { }
     }
 
