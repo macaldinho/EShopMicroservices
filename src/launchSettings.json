@@ -21,7 +21,8 @@
         "catalogdb": "StartWithoutDebugging",
         "distributedcache": "StartWithoutDebugging",
         "basket.api": "StartDebugging",
-        "discount.grpc": "StartWithoutDebugging"
+        "discount.grpc": "StartWithoutDebugging",
+        "orderdb": "StartWithoutDebugging"
       }
     }
   }

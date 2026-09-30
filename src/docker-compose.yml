@@ -11,6 +11,10 @@ services:
     container_name: distributedcache
     image: redis
 
+  orderdb:
+    container_name: orderdb
+    image: mcr.microsoft.com/mssql/server
+
   catalog.api:
     container_name: catalog.api
     image: ${DOCKER_REGISTRY-}catalogapi
